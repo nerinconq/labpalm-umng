@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LabPalm-UMNG · Guía de conexión</title>
+<meta name="description" content="Conecta tu sensor a la ESP32-S3 paso a paso, en 3D, y obtén el código que abre sus etapas en tu tarjeta LabPalm-UMNG.">
+<link rel="stylesheet" href="estilos.css">
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+} }
+</script>
+</head>
+<body>
+<header>
+  <div class="marca">LabPalm-UMNG <span>Laboratorio en la Palma de la Mano</span></div>
+</header>
+
+<main>
+  <section id="inicio">
+    <h1>Conecta tu sensor</h1>
+    <p class="ayuda">Antes de programar la tarjeta, arma el montaje con esta guía: cada paso
+      muestra un cable en 3D (gíralo con el dedo). Al final recibes el código que abre las
+      etapas de tu sensor en tu tarjeta.</p>
+    <div id="sensores" class="sensores"></div>
+  </section>
+
+  <section id="guia" hidden>
+    <div id="lienzo" class="lienzo"><p id="sin3d" class="ayuda" hidden>Este celular no puede
+      mostrar la vista 3D: sigue los pasos escritos.</p></div>
+    <div class="panel">
+      <div class="contador"><span id="nombreSensor"></span> · <span id="numeroPaso"></span></div>
+      <div id="puntos" class="puntos"></div>
+      <h2 id="tituloPaso"></h2>
+      <p id="notaPaso"></p>
+      <div id="revision" class="revision"></div>
+      <div class="acciones">
+        <button id="atras">← Atrás</button>
+        <button id="siguiente" class="primario">Siguiente →</button>
+      </div>
+      <button id="otroSensor" class="enlace">Elegir otro sensor</button>
+    </div>
+  </section>
+
+  <section id="final" hidden>
+    <h1>¡Montaje listo!</h1>
+    <p class="ayuda">El código depende de tu sensor y de tu tarjeta. Mira el nombre de la red
+      WiFi que crea tu tarjeta al encenderla (aparece en la lista del celular).</p>
+    <label class="red">LabPalm-UMNG-<input id="finalRed" maxlength="4" placeholder="XXXX"
+      autocapitalize="characters" spellcheck="false"></label>
+    <button id="verCodigo" class="primario">Ver mi código</button>
+    <p id="errorRed" class="mensaje"></p>
+    <div id="resultado" hidden>
+      <div class="codigo" id="codigo"></div>
+      <ol class="ayuda">
+        <li>Conecta el celular a la red <b id="redCompleta"></b> (clave del docente o de tu grupo).</li>
+        <li>Toca «Abrir mi tarjeta»: se abren las etapas de tu sensor.</li>
+        <li>O abre <b>http://192.168.4.1</b> y escribe el código en la tarjeta.</li>
+      </ol>
+      <a id="abrirTarjeta" class="boton primario">Abrir mi tarjeta</a>
+      <p class="ayuda">Guarda el código: la tarjeta no necesita internet para usarlo.</p>
+    </div>
+    <button id="repasar" class="enlace">← Repasar el montaje</button>
+  </section>
+</main>
+
+<footer>LabPalm-UMNG · Laboratorio en la Palma de la Mano · Universidad Militar Nueva Granada ·
+  código y hardware abiertos</footer>
+<script type="module" src="guia.js"></script>
+</body>
+</html>
