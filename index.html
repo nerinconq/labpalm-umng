@@ -46,6 +46,12 @@
 
   <section id="final" hidden>
     <h1>¡Montaje listo!</h1>
+    <div id="sinCodigo" class="ayuda" hidden>
+      <p>Esta práctica no necesita código. Conecta el celular a la red de tu tarjeta
+        (LabPalm-UMNG-XXXX), abre <b>http://192.168.4.1</b> y elige «Enganche · Conoce tu
+        tarjeta». Empieza por la etapa 1.</p>
+    </div>
+    <div id="conCodigo">
     <p class="ayuda">El código depende de tu sensor y de tu tarjeta. Mira el nombre de la red
       WiFi que crea tu tarjeta al encenderla (aparece en la lista del celular).</p>
     <label class="red">LabPalm-UMNG-<input id="finalRed" maxlength="4" placeholder="XXXX"
@@ -62,12 +68,13 @@
       <a id="abrirTarjeta" class="boton primario">Abrir mi tarjeta</a>
       <p class="ayuda">Guarda el código: la tarjeta no necesita internet para usarlo.</p>
     </div>
+    </div>
     <button id="repasar" class="enlace">← Repasar el montaje</button>
   </section>
 </main>
 
 <footer>LabPalm-UMNG · Laboratorio en la Palma de la Mano · Universidad Militar Nueva Granada ·
-  código y hardware abiertos</footer>
+  todos los derechos reservados</footer>
 <script type="module" src="guia.js"></script>
 </body>
 </html>

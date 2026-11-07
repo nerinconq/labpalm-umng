@@ -48,7 +48,43 @@ const revisar = (extra) => ({
   nota: "Mira el montaje completo: gíralo con el dedo y acércalo con dos dedos.",
 });
 
+function revisarEnganche() {
+  return {
+    titulo: "Revisa antes de encender", foco: "todo", revision: [
+      "Resistencia entre el pin 2 y la pata larga del LED.",
+      "Pata corta del LED en GND.",
+      "Cable del pin 1 clavado en la fruta, sin tocar otros cables.",
+      "Conecta el USB: el LED de la placa se pone azul y aparece la red LabPalm-UMNG-XXXX.",
+    ],
+    nota: "En la tarjeta, «Enganche» no pide código: abre sus etapas y empieza por la 1.",
+  };
+}
+
 export const SENSORES = {
+  enganche: {
+    nombre: "Enganche · Conoce tu tarjeta",
+    idea: "Sin sensores: un LED, una resistencia y una fruta. Tu celular controla la placa y mides tu tiempo de reacción.",
+    sinCodigo: true,
+    modulo: { ancho: 18, alto: 16, color: 0xf2efe6, pines: ["LED+", "GND", "FRUTA"],
+      chip: { ancho: 3, alto: 3, color: 0xd32f2f }, etiqueta: "LED y fruta" },
+    pasos: [
+      { titulo: "Primero, sin corriente", nota: "Desconecta el cable USB de la tarjeta antes de " +
+        "conectar. Conectar con la tarjeta encendida puede dañar la placa.", foco: "placa" },
+      { titulo: "El LED que ya trae la placa", foco: "placa", nota: "Junto al USB hay un LED RGB " +
+        "(pin 48): son tres LED, rojo, verde y azul, en uno. Con él la tarjeta te avisa qué hace " +
+        "(azul: programa base; verde: tu etapa) y en la etapa 1 lo pintas desde el celular." },
+      { titulo: "GPIO 2 → resistencia → LED", cable: "verde", desde: ["derecha", 4], hasta: "LED+",
+        nota: "Del pin 2 sale un cable a una resistencia de 220 Ω y de ella a la pata LARGA del LED " +
+          "(ánodo). La resistencia limita la corriente: (3,3 V − 2 V) / 220 Ω ≈ 6 mA. Sin ella el LED se quema." },
+      { titulo: "LED → GND", cable: "negro", desde: ["derecha", 0], hasta: "GND",
+        nota: "La pata CORTA del LED (cátodo, del lado plano) va a GND. Si el LED no prende, " +
+          "probablemente está al revés: dale la vuelta." },
+      { titulo: "GPIO 1 → la fruta", cable: "blanco", desde: ["derecha", 3], hasta: "FRUTA",
+        nota: "Un cable del pin 1 termina clavado en una fruta (limón, banano, papa). Los pines 1 " +
+          "a 14 miden capacitancia: al tocar la fruta, tu cuerpo suma carga y la tarjeta lo nota." },
+      revisarEnganche(),
+    ],
+  },
   distancia: {
     nombre: "Distancia · VI5300",
     idea: "Mide distancias con un pulso de luz infrarroja: cuenta cuánto tarda en ir y volver.",

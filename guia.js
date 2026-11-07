@@ -88,6 +88,9 @@ function revisarListo() {
 function siguiente() {
   if (paso < SENSORES[sensor].pasos.length - 1) { paso++; pintarPaso(); return; }
   mostrarSeccion("final");
+  const sinCodigo = !!SENSORES[sensor].sinCodigo;
+  $("sinCodigo").hidden = !sinCodigo;
+  $("conCodigo").hidden = sinCodigo;
   $("finalRed").value = (params.get("red") || "").toUpperCase().slice(0, 4);
   $("resultado").hidden = true;
 }
